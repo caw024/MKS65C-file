@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-
+#include <string.h>
 //for close, read, write
 #include <unistd.h>
 
@@ -16,11 +16,12 @@ int main(){
   int fd = open("file.txt",O_RDWR | O_CREAT);
   printf("File Descriptor (file.txt): %d\n",fd);
 
-  char * x = "c";
-  int wrote = write(fd,x,sizeof(char));
+  char * x = "cat";
+  int wrote = write(fd,x,strlen(x));
   printf("\nDid it write? %d",wrote);
 
-  int red = read(fd,x,sizeof(char));
+  char * r = calloc(sizeof(char),strlen(x));
+  int red = read(fd,r,strlen(x));
   printf("\nDid it read? %d",red);
 
 
